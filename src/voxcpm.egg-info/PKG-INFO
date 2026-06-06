@@ -1,0 +1,55 @@
+Metadata-Version: 2.4
+Name: voxcpm
+Version: 0.0.post0+d20260606
+Summary: VoxCPM: Tokenizer-Free TTS for Context-Aware Speech Generation and True-to-Life Voice Cloning
+Author-email: OpenBMB <openbmb@gmail.com>
+Maintainer-email: OpenBMB <openbmb@gmail.com>
+License-Expression: Apache-2.0
+Project-URL: Homepage, https://github.com/OpenBMB/VoxCPM
+Project-URL: Repository, https://github.com/OpenBMB/VoxCPM.git
+Project-URL: Documentation, https://github.com/OpenBMB/VoxCPM#readme
+Project-URL: Bug Tracker, https://github.com/OpenBMB/VoxCPM/issues
+Keywords: voxcpm,text-to-speech,tts,speech-synthesis,voice-cloning,ai,deep-learning,pytorch
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch>=2.5.0
+Requires-Dist: torchaudio>=2.5.0
+Requires-Dist: torchcodec
+Requires-Dist: transformers>=4.36.2
+Requires-Dist: einops
+Requires-Dist: gradio<7,>=6
+Requires-Dist: inflect
+Requires-Dist: addict
+Requires-Dist: wetext
+Requires-Dist: modelscope>=1.22.0
+Requires-Dist: datasets<4,>=3
+Requires-Dist: huggingface-hub
+Requires-Dist: pydantic
+Requires-Dist: tqdm
+Requires-Dist: simplejson
+Requires-Dist: sortedcontainers
+Requires-Dist: soundfile
+Requires-Dist: librosa
+Requires-Dist: matplotlib
+Requires-Dist: funasr
+Requires-Dist: spaces
+Requires-Dist: argbind
+Requires-Dist: safetensors
+Requires-Dist: fastapi>=0.136.3
+Requires-Dist: uvicorn>=0.49.0
+Requires-Dist: python-multipart>=0.0.32
+Requires-Dist: python-dotenv>=1.2.2
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.0; extra == "dev"
+Requires-Dist: black>=21.0; extra == "dev"
+Requires-Dist: flake8>=3.8; extra == "dev"
+Requires-Dist: pre-commit>=2.0; extra == "dev"
+Dynamic: license-file
