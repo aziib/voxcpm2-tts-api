@@ -1,6 +1,8 @@
 import os
 import io
 import uuid
+import json
+import shutil
 import logging
 from contextlib import asynccontextmanager
 from typing import Optional, Dict
@@ -30,14 +32,28 @@ async def lifespan(app: FastAPI):
     os.makedirs(VOICES_DIR, exist_ok=True)
     
     # Load any existing voices from the voices directory into memory
-    for file in os.listdir(VOICES_DIR):
-        if file.endswith((".wav", ".mp3")):
-            voice_id = os.path.splitext(file)[0]
-            voices_db[voice_id] = {
-                "id": voice_id,
-                "name": file,
-                "file_path": os.path.join(VOICES_DIR, file)
-            }
+    for item in os.listdir(VOICES_DIR):
+        item_path = os.path.join(VOICES_DIR, item)
+        if os.path.isdir(item_path):
+            config_path = os.path.join(item_path, "config.json")
+            if os.path.exists(config_path):
+                try:
+                    with open(config_path, "r", encoding="utf-8") as f:
+                        config = json.load(f)
+                    
+                    voice_id = config.get("id", item)
+                    name = config.get("name", "Unknown Voice")
+                    filename = config.get("filename")
+                    
+                    if filename:
+                        file_path = os.path.join(item_path, filename)
+                        voices_db[voice_id] = {
+                            "id": voice_id,
+                            "name": name,
+                            "file_path": file_path
+                        }
+                except Exception as e:
+                    logger.warning(f"Failed to load config for voice folder {item}: {e}")
             
     logger.info("Initializing VoxCPM Demo and loading model...")
     # Initialize and pre-load the model
@@ -93,17 +109,26 @@ async def add_voice(
     if not file.filename.endswith((".wav", ".mp3", ".flac", ".ogg")):
         raise HTTPException(status_code=400, detail="Invalid audio file type.")
     
-    # Sanitize name to create voice_id (replace spaces with underscores)
-    voice_id = name.replace(" ", "_")
+    voice_id = str(uuid.uuid4())
+    voice_dir = os.path.join(VOICES_DIR, voice_id)
+    os.makedirs(voice_dir, exist_ok=True)
     
     # Keep the original extension
     ext = os.path.splitext(file.filename)[1]
-    save_filename = f"{voice_id}{ext}"
-    file_path = os.path.join(VOICES_DIR, save_filename)
+    save_filename = f"audio{ext}"
+    file_path = os.path.join(voice_dir, save_filename)
     
     with open(file_path, "wb") as f:
         content = await file.read()
         f.write(content)
+        
+    config = {
+        "id": voice_id,
+        "name": name,
+        "filename": save_filename
+    }
+    with open(os.path.join(voice_dir, "config.json"), "w", encoding="utf-8") as f:
+        json.dump(config, f, indent=4)
         
     voice_record = {
         "id": voice_id,
@@ -120,13 +145,13 @@ def delete_voice(voice_id: str):
     if voice_id not in voices_db:
         raise HTTPException(status_code=404, detail="Voice not found")
         
-    file_path = voices_db[voice_id]["file_path"]
+    voice_dir = os.path.join(VOICES_DIR, voice_id)
     try:
-        if os.path.exists(file_path):
-            os.remove(file_path)
+        if os.path.exists(voice_dir):
+            shutil.rmtree(voice_dir)
     except Exception as e:
-        logger.error(f"Failed to delete file {file_path}: {e}")
-        raise HTTPException(status_code=500, detail="Failed to delete file from disk")
+        logger.error(f"Failed to delete directory {voice_dir}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to delete voice folder from disk")
         
     del voices_db[voice_id]
     return {"status": "success", "message": f"Voice {voice_id} deleted"}

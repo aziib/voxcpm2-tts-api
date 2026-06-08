@@ -1,13 +1,15 @@
+<div align="center">
+
 # 🎙️ VoxCPM2 TTS API
 
-<div align="center">
-  <img src="screenshot.png" alt="VoxCPM2 TTS API Screenshot" width="800"/>
+<img src="screenshot.png" alt="VoxCPM2 TTS API Screenshot" width="800" style="border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1);"/>
 
-  <p>
-    <b>A standalone, tokenizer-free text-to-speech API powered by VoxCPM.</b>
-  </p>
+**A standalone, tokenizer-free text-to-speech API powered by VoxCPM.**
 
-  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
+[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+
 </div>
 
 ---
@@ -20,7 +22,7 @@
 - 🎯 **Zero-Shot Voice Cloning:** Clone any voice using just a short reference audio clip—**no ASR transcription required!**
 - 🎨 **Voice Design:** Create unique voices from scratch simply by describing them in text (e.g., *"Speaks slowly with a melancholic tone"*).
 - ⚛️ **Modern React Frontend:** A beautiful web interface to manage your voice library and generate speech with real-time audio playback.
-- 🗂️ **Voice Library Management:** Easily upload, list, and delete voice references directly from your browser.
+- 🗂️ **Voice Library Management:** Easily upload, list, and delete voice references directly from your browser. 
 
 ## 📦 Requirements
 
@@ -62,8 +64,8 @@ npm run dev
 
 Manage your custom voices directly through the frontend's **"Manage Voices"** tab:
 
-- **➕ Add a Voice:** Upload a `.wav` or `.mp3` file and assign it a name. The API saves the audio file without running any transcription, saving VRAM and processing time!
-- **🗑️ Delete a Voice:** Easily remove any voice you no longer need.
+- **➕ Add a Voice:** Upload a `.wav` or `.mp3` file and assign it a name. The API securely saves the audio file inside an isolated ID folder along with its configuration. No transcription is run, saving your VRAM and processing time!
+- **🗑️ Delete a Voice:** Easily remove any voice you no longer need. This cleanly removes the folder and files.
 - **🎤 Use a Voice:** Select your saved voice in the Inference tab to clone it instantly.
 
 ## 📖 API Documentation
@@ -80,14 +82,18 @@ This project is licensed under the **Apache License 2.0**. See the [LICENSE](LIC
 
 ---
 
+<div align="center">
+
 ## 💖 Support Me
 
 If you find this project useful, consider supporting my work!
 
-- ☕ **Ko-fi:** [megaaziib](https://ko-fi.com/megaaziib)
-- 🪙 **Solana / USDC / USDT (Solana Network):**  
-  `9rupbyrM19RaVbHmJ4fusozux6P9t72GoYB7Sdy4Nmks`
+<a href="https://ko-fi.com/megaaziib" target="_blank"><img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" alt="Buy Me a Coffee at ko-fi.com" height="36"></a>
 
-<div align="center">
-  <i>Built with ❤️ for the AI Voice Community</i>
+🪙 **Solana / USDC / USDT (Solana Network):**  
+`9rupbyrM19RaVbHmJ4fusozux6P9t72GoYB7Sdy4Nmks`
+
+<br>
+<i>Built with ❤️ for the AI Voice Community</i>
+
 </div>
