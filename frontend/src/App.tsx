@@ -235,7 +235,7 @@ function App() {
                     <div key={v.id} className="voice-item">
                       <div className="voice-item-info">
                         <span className="voice-item-name"><Music size={14} style={{display:'inline', marginRight: '8px', color: 'var(--accent-primary)'}}/> {v.name}</span>
-                        <span className="voice-item-id">ID: {v.id.substring(0,8)}...</span>
+                        <span className="voice-item-id">ID: {v.id}</span>
                       </div>
                       <button 
                         className="btn-icon-danger" 

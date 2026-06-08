@@ -109,7 +109,8 @@ async def add_voice(
     if not file.filename.endswith((".wav", ".mp3", ".flac", ".ogg")):
         raise HTTPException(status_code=400, detail="Invalid audio file type.")
     
-    voice_id = str(uuid.uuid4())
+    # Sanitize name to create voice_id (replace spaces with underscores)
+    voice_id = name.replace(" ", "_")
     voice_dir = os.path.join(VOICES_DIR, voice_id)
     os.makedirs(voice_dir, exist_ok=True)
     
