@@ -32,7 +32,7 @@ Retrieve a list of all uploaded voice references available for cloning.
     {
       "id": "Emma",
       "name": "Emma",
-      "file_path": "voices\\Emma.wav"
+      "file_path": "voices\\Emma\\audio.wav"
     }
   ]
   \`\`\`
@@ -52,7 +52,7 @@ Upload a new audio file to use as a voice reference. This endpoint saves the fil
   {
     "id": "Deep_Male_Voice",
     "name": "Deep Male Voice",
-    "file_path": "voices\\Deep_Male_Voice.wav"
+    "file_path": "voices\\Deep_Male_Voice\\audio.wav"
   }
   \`\`\`
 
