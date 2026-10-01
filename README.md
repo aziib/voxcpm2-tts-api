@@ -90,9 +90,6 @@ If you find this project useful, consider supporting my work!
 
 <a href="https://ko-fi.com/megaaziib" target="_blank"><img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" alt="Buy Me a Coffee at ko-fi.com" height="36"></a>
 
-🪙 **Solana / USDC / USDT (Solana Network):**  
-`9rupbyrM19RaVbHmJ4fusozux6P9t72GoYB7Sdy4Nmks`
-
 <br>
 <i>Built with ❤️ for the AI Voice Community</i>
 
